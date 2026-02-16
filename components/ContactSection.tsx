@@ -36,9 +36,9 @@ const ContactSection: React.FC = () => {
           serviceId,
           templateId,
           {
-            user_name: formData.name,
-            user_email: formData.email,
-            user_message: formData.message,
+            name: formData.name,
+            email: formData.email,
+            message: formData.message,
             to_email: 'webxlux@gmail.com'
           },
           publicKey
