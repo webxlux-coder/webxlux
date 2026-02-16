@@ -33,7 +33,7 @@ const ScrollProgress: React.FC = () => {
 
   return (
     <div className="fixed top-0 left-0 w-full h-1 z-[60]">
-      <div 
+      <div
         className="h-full bg-gradient-to-r from-purple-500 to-blue-500 transition-all duration-100 ease-out"
         style={{ width: `${scroll}%` }}
       />
@@ -45,7 +45,7 @@ const ScrollQuote: React.FC = () => {
   useEffect(() => {
     if (typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined') {
       gsap.registerPlugin(ScrollTrigger);
-      
+
       gsap.to(".quote", {
         scrollTrigger: {
           trigger: ".wrap",
@@ -73,7 +73,7 @@ const WormScrollEffect: React.FC = () => {
   useEffect(() => {
     if (typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined') {
       gsap.registerPlugin(ScrollTrigger);
-      
+
       const tl = gsap.timeline({
         scrollTrigger: {
           scrub: 1,
@@ -92,20 +92,20 @@ const WormScrollEffect: React.FC = () => {
 
   return (
     <div className="scroll-trigger-ready__worm-wrap absolute left-0 right-0 w-full pointer-events-none z-0 overflow-hidden" style={{ height: '150%' }}>
-      <svg 
-        width="100%" 
-        height="100%" 
-        viewBox="0 0 1440 2000" 
-        fill="none" 
+      <svg
+        width="100%"
+        height="100%"
+        viewBox="0 0 1440 2000"
+        fill="none"
         preserveAspectRatio="none"
         xmlns="http://www.w3.org/2000/svg"
         className="opacity-20"
       >
-        <path 
+        <path
           className="worm-path"
-          d="M1441 0.5C1441 0.5 1200 150 1100 400C1000 650 1300 850 1000 1100C700 1350 200 1400 100 1700C0 2000 -50 2200 -50 2200" 
-          stroke="url(#worm_gradient)" 
-          strokeWidth="4" 
+          d="M1441 0.5C1441 0.5 1200 150 1100 400C1000 650 1300 850 1000 1100C700 1350 200 1400 100 1700C0 2000 -50 2200 -50 2200"
+          stroke="url(#worm_gradient)"
+          strokeWidth="4"
           strokeLinecap="round"
         />
         <defs>
@@ -122,7 +122,7 @@ const WormScrollEffect: React.FC = () => {
 const InfiniteMarquee: React.FC = () => {
   const { t } = useLanguage();
   const items = t.marquee;
-  
+
   return (
     <div className="py-12 border-y border-gray-100 bg-white overflow-hidden whitespace-nowrap">
       <div className="animate-marquee flex items-center">
@@ -130,7 +130,7 @@ const InfiniteMarquee: React.FC = () => {
           <div key={i} className="flex items-center">
             {items.map((item, index) => (
               <React.Fragment key={index}>
-                <span className="text-4xl md:text-6xl font-bold text-gray-900 mx-8 tracking-tighter uppercase font-poppins">
+                <span className="text-4xl md:text-6xl font-bold text-gray-900 mx-8 tracking-tight uppercase font-poppins">
                   {item}
                 </span>
                 <span className="text-4xl md:text-6xl text-outline mx-8 font-bold font-poppins">
@@ -163,9 +163,8 @@ const BackToTop: React.FC = () => {
   return (
     <button
       onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
-      className={`fixed bottom-8 left-8 z-50 w-12 h-12 bg-white text-gray-900 rounded-full shadow-2xl flex items-center justify-center transition-all duration-500 transform hover:scale-110 hover:-translate-y-2 border border-gray-100 ${
-        visible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-20'
-      }`}
+      className={`fixed bottom-8 left-8 z-50 w-12 h-12 bg-white text-gray-900 rounded-full shadow-2xl flex items-center justify-center transition-all duration-500 transform hover:scale-110 hover:-translate-y-2 border border-gray-100 ${visible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-20'
+        }`}
       aria-label="Back to top"
     >
       <i className="fas fa-chevron-up"></i>
@@ -227,9 +226,9 @@ const App: React.FC = () => {
     <div className="relative antialiased">
       <ScrollProgress />
       <BackToTop />
-      
-      <Navbar 
-        onNavigateHome={handleBackToHome} 
+
+      <Navbar
+        onNavigateHome={handleBackToHome}
         onNavigateWork={handleOpenPortfolio}
         onNavigateContact={handleNavigateContact}
         onNavigateFAQ={handleNavigateFAQ}
@@ -237,12 +236,12 @@ const App: React.FC = () => {
 
       {view === 'home' && (
         <main className="relative">
-          <Hero 
-            onViewWork={handleOpenPortfolio} 
+          <Hero
+            onViewWork={handleOpenPortfolio}
             onContactClick={handleNavigateContact}
           />
           <InfiniteMarquee />
-          
+
           <ScrollQuote />
 
           <div className="relative">
@@ -251,7 +250,7 @@ const App: React.FC = () => {
             <WorkSection onSelectProject={handleSelectProject} />
             <ProcessSection />
           </div>
-          
+
           <FAQSection />
           <ContactSection />
           <Footer />
@@ -263,8 +262,8 @@ const App: React.FC = () => {
       )}
 
       {view === 'project' && selectedProjectId !== null && (
-        <ProjectDetail 
-          projectId={selectedProjectId} 
+        <ProjectDetail
+          projectId={selectedProjectId}
           onBack={handleBackToHome}
           onNavigate={handleSelectProject}
         />
