@@ -1,14 +1,14 @@
 import React from 'react';
-import { getProjects } from '../constants';
 import { useLanguage } from '../LanguageContext';
+import { useProjects } from '../hooks/useSupabaseData';
 
 interface PortfolioGalleryProps {
   onSelectProject: (id: number) => void;
 }
 
 const PortfolioGallery: React.FC<PortfolioGalleryProps> = ({ onSelectProject }) => {
-  const { language, t } = useLanguage();
-  const projects = getProjects(language);
+  const { t } = useLanguage();
+  const projects = useProjects();
 
   return (
     <section className="bg-white min-h-screen pt-40 pb-24 px-6 md:px-24">
@@ -22,7 +22,7 @@ const PortfolioGallery: React.FC<PortfolioGalleryProps> = ({ onSelectProject }) 
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
           {projects.map((project, idx) => (
-            <div 
+            <div
               key={project.id}
               onClick={() => onSelectProject(project.id)}
               className="group cursor-pointer"
@@ -30,10 +30,10 @@ const PortfolioGallery: React.FC<PortfolioGalleryProps> = ({ onSelectProject }) 
               data-aos-delay={idx * 100}
             >
               <div className="relative overflow-hidden rounded-[2rem] bg-gray-100 aspect-[4/3] shadow-lg transition-all duration-500 group-hover:shadow-2xl">
-                <img 
-                  src={project.image} 
-                  className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" 
-                  alt={project.title} 
+                <img
+                  src={project.image}
+                  className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                  alt={project.title}
                 />
                 <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-all duration-500 flex items-center justify-center opacity-0 group-hover:opacity-100">
                   <div className="bg-white px-8 py-4 rounded-full text-gray-900 font-bold shadow-2xl translate-y-4 group-hover:translate-y-0 transition-transform">

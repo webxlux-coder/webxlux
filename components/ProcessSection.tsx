@@ -1,8 +1,10 @@
 import React from 'react';
 import { useLanguage } from '../LanguageContext';
+import { useProcessSteps } from '../hooks/useSupabaseData';
 
 const ProcessSection: React.FC = () => {
   const { t } = useLanguage();
+  const steps = useProcessSteps();
 
   return (
     <section id="process" className="py-32 px-6 md:px-24 bg-[#F9FAFB]">
@@ -16,10 +18,10 @@ const ProcessSection: React.FC = () => {
               {t.process.subtitle}
             </p>
           </div>
-          
+
           <div className="lg:col-span-7 space-y-12">
-            {t.process.steps.map((step, idx) => (
-              <div 
+            {steps.map((step, idx) => (
+              <div
                 key={idx}
                 className="flex items-start space-x-8 pb-12 border-b border-gray-200 last:border-0 last:pb-0"
                 data-aos="fade-up"

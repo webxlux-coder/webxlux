@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
-import { getFaqData } from '../constants';
 import { useLanguage } from '../LanguageContext';
+import { useFAQs } from '../hooks/useSupabaseData';
 
 const FAQItem: React.FC<{ question: string; answer: string; index: number }> = ({ question, answer, index }) => {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
-    <div 
+    <div
       className="border-b border-gray-200 py-6 last:border-0"
       data-aos="fade-right"
       data-aos-delay={index * 50}
@@ -23,9 +23,8 @@ const FAQItem: React.FC<{ question: string; answer: string; index: number }> = (
         </div>
       </button>
       <div
-        className={`overflow-hidden transition-all duration-500 ease-in-out ${
-          isOpen ? 'max-h-96 mt-4 opacity-100' : 'max-h-0 opacity-0'
-        }`}
+        className={`overflow-hidden transition-all duration-500 ease-in-out ${isOpen ? 'max-h-96 mt-4 opacity-100' : 'max-h-0 opacity-0'
+          }`}
       >
         <p className="text-gray-500 text-lg leading-relaxed">
           {answer}
@@ -36,8 +35,8 @@ const FAQItem: React.FC<{ question: string; answer: string; index: number }> = (
 };
 
 const FAQSection: React.FC = () => {
-  const { language, t } = useLanguage();
-  const faqData = getFaqData(language);
+  const { t } = useLanguage();
+  const faqData = useFAQs();
 
   return (
     <section id="faq" className="py-24 px-6 md:px-24 bg-white">

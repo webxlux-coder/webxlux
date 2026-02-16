@@ -1,8 +1,10 @@
 import React from 'react';
 import { useLanguage } from '../LanguageContext';
+import { useServices } from '../hooks/useSupabaseData';
 
 const ServicesSection: React.FC = () => {
   const { t } = useLanguage();
+  const services = useServices();
 
   return (
     <section id="services" className="py-32 px-6 md:px-24 bg-white">
@@ -15,8 +17,8 @@ const ServicesSection: React.FC = () => {
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-          {t.services.items.map((service, idx) => (
-            <div 
+          {services.map((service, idx) => (
+            <div
               key={idx}
               className="p-10 rounded-[2.5rem] bg-gray-50 border border-gray-100 hover:bg-gray-900 hover:text-white transition-all duration-500 group"
               data-aos="fade-up"
