@@ -19,7 +19,7 @@ const FAQ_DATA_EN: FAQItem[] = [
   },
   {
     question: "How does payment work?",
-    answer: "I typically work with a 50/50 structure: a 50% deposit to secure your slot and start the project, and the remaining 50% upon completion and your final approval, just before we go live."
+    answer: "You pay me at the end of the website creation and then after the first free month of support there is a small charge per month that can depend on what you desire."
   },
   {
     question: "Do you help with hosting and domain names?",
@@ -42,7 +42,7 @@ const FAQ_DATA_FR: FAQItem[] = [
   },
   {
     question: "Comment fonctionne le paiement ?",
-    answer: "Je travaille généralement avec une structure 50/50 : un acompte de 50 % pour réserver votre créneau et démarrer le projet, et les 50 % restants à la fin, juste avant la mise en ligne."
+    answer: "Vous me payez à la fin de la création du site web, puis après le premier mois de support gratuit, il y a un petit abonnement mensuel qui peut varier selon vos besoins."
   },
   {
     question: "Aidez-vous pour l'hébergement et les noms de domaine ?",
