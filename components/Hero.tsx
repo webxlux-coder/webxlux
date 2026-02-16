@@ -31,7 +31,7 @@ const Hero: React.FC<HeroProps> = ({ onViewWork, onContactClick }) => {
         {/* Main Content */}
         <div className="max-w-5xl">
           <h1
-            className="text-6xl md:text-8xl lg:text-[9.5rem] font-bold text-gray-900 leading-[1.2] mb-16 tracking-wide"
+            className="text-6xl md:text-8xl lg:text-[9.5rem] font-bold text-gray-900 leading-[1.1] mb-16 tracking-tighter"
             data-aos="fade-up"
             data-aos-delay="100"
           >

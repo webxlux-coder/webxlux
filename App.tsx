@@ -130,7 +130,7 @@ const InfiniteMarquee: React.FC = () => {
           <div key={i} className="flex items-center">
             {items.map((item, index) => (
               <React.Fragment key={index}>
-                <span className="text-4xl md:text-6xl font-bold text-gray-900 mx-8 tracking-normal uppercase font-poppins">
+                <span className="text-4xl md:text-6xl font-bold text-gray-900 mx-8 tracking-tighter uppercase font-poppins">
                   {item}
                 </span>
                 <span className="text-4xl md:text-6xl text-outline mx-8 font-bold font-poppins">
