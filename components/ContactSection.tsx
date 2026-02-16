@@ -1,23 +1,61 @@
 import React, { useState } from 'react';
 import { useLanguage } from '../LanguageContext';
+import emailjs from '@emailjs/browser';
 
 const ContactSection: React.FC = () => {
   const { t } = useLanguage();
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSent, setIsSent] = useState(false);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  // Form states
+  const [formData, setFormData] = useState({
+    name: '',
+    email: '',
+    message: ''
+  });
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    const { id, value } = e.target;
+    setFormData(prev => ({ ...prev, [id]: value }));
+  };
+
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
-    
-    // Simulate API call
-    setTimeout(() => {
-      setIsSubmitting(false);
+
+    try {
+      const serviceId = import.meta.env.VITE_EMAILJS_SERVICE_ID;
+      const templateId = import.meta.env.VITE_EMAILJS_TEMPLATE_ID;
+      const publicKey = import.meta.env.VITE_EMAILJS_PUBLIC_KEY;
+
+      if (serviceId === 'your_service_id' || !serviceId) {
+        console.warn('EmailJS Service ID is not configured. Simulating success...');
+        await new Promise(resolve => setTimeout(resolve, 1500));
+      } else {
+        await emailjs.send(
+          serviceId,
+          templateId,
+          {
+            user_name: formData.name,
+            user_email: formData.email,
+            user_message: formData.message,
+            to_email: 'webxlux@gmail.com'
+          },
+          publicKey
+        );
+      }
+
       setIsSent(true);
-      
-      // Reset after some time
+      setFormData({ name: '', email: '', message: '' });
+
+      // Reset success message after some time
       setTimeout(() => setIsSent(false), 5000);
-    }, 1500);
+    } catch (error) {
+      console.error('Failed to send email:', error);
+      alert('Failed to send message. Please try again later or contact us directly at webxlux@gmail.com');
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const inputClasses = "w-full px-5 py-4 bg-gray-50 border border-gray-300 rounded-2xl focus:ring-2 focus:ring-black focus:border-black transition-all outline-none text-gray-900 font-medium placeholder-gray-400 shadow-sm";
@@ -57,7 +95,7 @@ const ContactSection: React.FC = () => {
                 </div>
                 <h3 className="text-3xl font-bold text-gray-900 mb-4">{t.contact.sentTitle}</h3>
                 <p className="text-gray-500">{t.contact.sentDesc}</p>
-                <button 
+                <button
                   onClick={() => setIsSent(false)}
                   className="mt-8 text-blue-600 font-semibold hover:underline"
                 >
@@ -73,6 +111,8 @@ const ContactSection: React.FC = () => {
                       required
                       type="text"
                       id="name"
+                      value={formData.name}
+                      onChange={handleChange}
                       placeholder="John Doe"
                       className={inputClasses}
                     />
@@ -83,6 +123,8 @@ const ContactSection: React.FC = () => {
                       required
                       type="email"
                       id="email"
+                      value={formData.email}
+                      onChange={handleChange}
                       placeholder="john@example.com"
                       className={inputClasses}
                     />
@@ -94,6 +136,8 @@ const ContactSection: React.FC = () => {
                     required
                     id="message"
                     rows={4}
+                    value={formData.message}
+                    onChange={handleChange}
                     placeholder="How can I help you?"
                     className={`${inputClasses} resize-none`}
                   ></textarea>
@@ -101,9 +145,8 @@ const ContactSection: React.FC = () => {
                 <button
                   disabled={isSubmitting}
                   type="submit"
-                  className={`w-full md:w-auto px-12 py-5 rounded-full font-bold text-lg transition-all duration-300 shadow-lg hover:shadow-xl hover:-translate-y-1 flex items-center justify-center space-x-3 group ${
-                    isSubmitting ? 'bg-gray-400 cursor-not-allowed' : 'bg-gray-900 text-white hover:bg-gray-800'
-                  }`}
+                  className={`w-full md:w-auto px-12 py-5 rounded-full font-bold text-lg transition-all duration-300 shadow-lg hover:shadow-xl hover:-translate-y-1 flex items-center justify-center space-x-3 group ${isSubmitting ? 'bg-gray-400 cursor-not-allowed' : 'bg-gray-900 text-white hover:bg-gray-800'
+                    }`}
                 >
                   {isSubmitting ? (
                     <>
