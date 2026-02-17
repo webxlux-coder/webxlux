@@ -99,8 +99,8 @@ const AdminDashboard: React.FC<{ onBack: () => void }> = ({ onBack }) => {
                                 key={tab}
                                 onClick={() => setActiveTab(tab)}
                                 className={`px-4 py-2 rounded-lg text-sm font-medium transition-all ${activeTab === tab
-                                        ? 'bg-blue-50 text-blue-600'
-                                        : 'text-gray-500 hover:bg-gray-100 hover:text-gray-900'
+                                    ? 'bg-blue-50 text-blue-600'
+                                    : 'text-gray-500 hover:bg-gray-100 hover:text-gray-900'
                                     }`}
                             >
                                 {tab.charAt(0).toUpperCase() + tab.slice(1)}

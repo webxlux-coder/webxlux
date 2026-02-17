@@ -61,13 +61,13 @@ const WorkSection: React.FC<WorkSectionProps> = ({ onSelectProject }) => {
                   <h3 className="text-3xl md:text-4xl font-bold text-gray-900 tracking-tight group-hover:text-blue-600 transition-colors duration-300">
                     {project.title}
                   </h3>
-                  
+
                   {/* Arrow Icon slides right when the card/image is hovered */}
                   <div className="w-12 h-12 rounded-full border border-gray-100 flex items-center justify-center bg-white shadow-sm transition-all duration-500 group-hover:bg-blue-600 group-hover:border-blue-600 group-hover:translate-x-3">
                     <i className="fas fa-arrow-right text-gray-400 group-hover:text-white transition-all duration-300"></i>
                   </div>
                 </div>
-                
+
                 {/* Category & Short Description */}
                 <p className="text-blue-600 text-xs font-bold uppercase tracking-widest mb-3">{project.category}</p>
                 <p className="text-gray-500 text-lg leading-relaxed font-light line-clamp-2">
