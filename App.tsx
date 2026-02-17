@@ -288,6 +288,9 @@ const App: React.FC = () => {
           onNavigate={handleSelectProject}
         />
       )}
+      {view === 'admin' && (
+        <AdminDashboard onBack={handleBackToHome} />
+      )}
     </div>
   );
 };
