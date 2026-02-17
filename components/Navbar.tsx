@@ -8,11 +8,11 @@ interface NavbarProps {
   onNavigateFAQ: () => void;
 }
 
-const Navbar: React.FC<NavbarProps> = ({ 
-  onNavigateHome, 
-  onNavigateWork, 
+const Navbar: React.FC<NavbarProps> = ({
+  onNavigateHome,
+  onNavigateWork,
   onNavigateContact,
-  onNavigateFAQ 
+  onNavigateFAQ
 }) => {
   const [isOpen, setIsOpen] = useState(false);
   const { language, setLanguage, t } = useLanguage();
@@ -66,14 +66,14 @@ const Navbar: React.FC<NavbarProps> = ({
     <>
       {/* Branding Logo */}
       <div className="fixed top-8 left-8 z-50 flex items-center gap-4">
-        <button 
+        <button
           onClick={handleHomeClick}
           className="text-2xl font-bold tracking-tighter text-gray-900 font-poppins px-6 py-4 bg-white/80 backdrop-blur-md rounded-full shadow-lg"
         >
           WebXlux<span className="text-blue-600">.</span>
         </button>
-        
-        <button 
+
+        <button
           onClick={toggleLanguage}
           className="text-sm font-bold tracking-wider text-gray-900 font-poppins px-4 py-4 bg-white/80 backdrop-blur-md rounded-full shadow-lg hover:bg-gray-100 transition-colors uppercase"
         >
@@ -96,9 +96,8 @@ const Navbar: React.FC<NavbarProps> = ({
 
       {/* Full-screen Overlay */}
       <div
-        className={`fixed inset-0 z-40 bg-white transform transition-transform duration-700 ease-in-out ${
-          isOpen ? 'translate-x-0' : 'translate-x-full'
-        }`}
+        className={`fixed inset-0 z-40 bg-white transform transition-transform duration-700 ease-in-out ${isOpen ? 'translate-x-0' : 'translate-x-full'
+          }`}
       >
         <nav className="h-full flex flex-col items-center justify-center space-y-6 md:space-y-8 overflow-y-auto pt-24">
           <button
@@ -131,12 +130,7 @@ const Navbar: React.FC<NavbarProps> = ({
           >
             {t.nav.contact}
           </button>
-          
-          <div className="flex space-x-6 pt-12 pb-12">
-            <a href="#" className="text-gray-400 hover:text-gray-900 transition-colors"><i className="fab fa-twitter text-xl"></i></a>
-            <a href="#" className="text-gray-400 hover:text-gray-900 transition-colors"><i className="fab fa-dribbble text-xl"></i></a>
-            <a href="#" className="text-gray-400 hover:text-gray-900 transition-colors"><i className="fab fa-linkedin-in text-xl"></i></a>
-          </div>
+
         </nav>
       </div>
     </>
