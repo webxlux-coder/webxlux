@@ -9,7 +9,6 @@ import ContactSection from './components/ContactSection';
 import Footer from './components/Footer';
 import ProjectDetail from './components/ProjectDetail';
 import PortfolioGallery from './components/PortfolioGallery';
-import AdminDashboard from './components/AdminDashboard';
 import { useLanguage } from './LanguageContext';
 
 // Declare globals for TypeScript
@@ -174,7 +173,7 @@ const BackToTop: React.FC = () => {
 };
 
 const App: React.FC = () => {
-  const [view, setView] = useState<'home' | 'project' | 'portfolio' | 'admin'>('home');
+  const [view, setView] = useState<'home' | 'project' | 'portfolio'>('home');
   const [selectedProjectId, setSelectedProjectId] = useState<number | null>(null);
 
   useEffect(() => {
@@ -186,25 +185,6 @@ const App: React.FC = () => {
         easing: 'ease-out-cubic'
       });
     }
-  }, [view]);
-
-  useEffect(() => {
-    const handleHashChange = () => {
-      if (window.location.hash === '#admin') {
-        setView('admin');
-        window.scrollTo(0, 0);
-      } else if (view === 'admin') {
-        setView('home');
-      }
-    };
-
-    window.addEventListener('hashchange', handleHashChange);
-    // Check initial hash
-    if (window.location.hash === '#admin') {
-      setView('admin');
-    }
-
-    return () => window.removeEventListener('hashchange', handleHashChange);
   }, [view]);
 
   const handleSelectProject = (id: number) => {
@@ -287,9 +267,6 @@ const App: React.FC = () => {
           onBack={handleBackToHome}
           onNavigate={handleSelectProject}
         />
-      )}
-      {view === 'admin' && (
-        <AdminDashboard onBack={handleBackToHome} />
       )}
     </div>
   );
