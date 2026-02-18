@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>WebXlux | Modern & Ergonomic Portfolio</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@300;400;500;600;700&display=swap"
+    rel="stylesheet">
+
+  <!-- GSAP for advanced animations -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+
+  <style>
+    body {
+      font-family: 'Inter', sans-serif;
+      cursor: default;
+    }
+
+    h1,
+    h2,
+    h3,
+    .font-poppins {
+      font-family: 'Poppins', sans-serif;
+    }
+
+    /* Premium Grain Texture */
+    .grain {
+      position: fixed;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+      opacity: 0.04;
+      pointer-events: none;
+      z-index: 9999;
+      animation: noise 0.2s infinite;
+    }
+
+    @keyframes noise {
+      0% {
+        transform: translate(0, 0)
+      }
+
+      10% {
+        transform: translate(-5%, -5%)
+      }
+
+      20% {
+        transform: translate(-10%, 5%)
+      }
+
+      30% {
+        transform: translate(5%, -10%)
+      }
+
+      40% {
+        transform: translate(-5%, 15%)
+      }
+
+      50% {
+        transform: translate(-10%, 5%)
+      }
+
+      60% {
+        transform: translate(15%, 0)
+      }
+
+      70% {
+        transform: translate(0, 10%)
+      }
+
+      80% {
+        transform: translate(-15%, 0)
+      }
+
+      90% {
+        transform: translate(10%, 5%)
+      }
+
+      100% {
+        transform: translate(5%, 0)
+      }
+    }
+
+    /* Custom Scrollbar */
+    ::-webkit-scrollbar {
+      width: 8px;
+    }
+
+    ::-webkit-scrollbar-track {
+      background: #f1f1f1;
+    }
+
+    ::-webkit-scrollbar-thumb {
+      background: #111827;
+      border-radius: 10px;
+    }
+
+    ::-webkit-scrollbar-thumb:hover {
+      background: #374151;
+    }
+
+    /* Marquee Animation */
+    @keyframes marquee {
+      0% {
+        transform: translateX(0);
+      }
+
+      100% {
+        transform: translateX(-50%);
+      }
+    }
+
+    .animate-marquee {
+      display: flex;
+      width: max-content;
+      animation: marquee 80s linear infinite;
+    }
+
+    .text-outline {
+      -webkit-text-stroke: 1px rgba(17, 24, 39, 0.2);
+      color: transparent;
+    }
+
+    /* Transitions */
+    .animate-fade-in {
+      animation: fadeIn 0.5s ease-out forwards;
+    }
+
+    .animate-fade-out {
+      animation: fadeOut 0.5s ease-in forwards;
+    }
+
+    .animate-zoom-in {
+      animation: zoomIn 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+      }
+
+      to {
+        opacity: 1;
+      }
+    }
+
+    @keyframes fadeOut {
+      from {
+        opacity: 1;
+      }
+
+      to {
+        opacity: 0;
+      }
+    }
+
+    /* Scroll Down Indicator - Moved to the Right */
+    .sp {
+      writing-mode: vertical-rl;
+      text-transform: uppercase;
+      letter-spacing: 0.2em;
+      font-size: 0.75rem;
+      font-weight: 700;
+      color: #9CA3AF;
+      position: absolute;
+      bottom: 2rem;
+      right: 4rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 1rem;
+      animation: bounce 2s infinite;
+      z-index: 20;
+    }
+
+    @keyframes bounce {
+
+      0%,
+      20%,
+      50%,
+      80%,
+      100% {
+        transform: translateY(0);
+      }
+
+      40% {
+        transform: translateY(-10px);
+      }
+
+      60% {
+        transform: translateY(-5px);
+      }
+    }
+
+    .sp::after {
+      content: '';
+      width: 1px;
+      height: 50px;
+      background: linear-gradient(to bottom, #9CA3AF, transparent);
+    }
+
+    /* Quote Animation Wrap */
+    .wrap {
+      overflow: hidden;
+      padding: 10rem 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: #F9FAFB;
+    }
+
+    .quote {
+      font-size: clamp(3rem, 10vw, 8rem);
+      font-weight: 900;
+      line-height: 1;
+      text-align: center;
+      letter-spacing: -0.05em;
+      color: #111827;
+      max-width: 90%;
+      opacity: 0;
+      transform: translateY(50px);
+    }
+
+    @media (max-width: 768px) {
+      .sp {
+        right: 1.5rem;
+      }
+    }
+  </style>
+
+  <script type="importmap">
+{
+  "imports": {
+    "react": "https://esm.sh/react@^19.2.3",
+    "react-dom/": "https://esm.sh/react-dom@^19.2.3/",
+    "react/": "https://esm.sh/react@^19.2.3/"
+  }
+}
+</script>
+  <script type="module" crossorigin src="/assets/index-DXkePaxL.js"></script>
+</head>
+
+<body class="bg-[#F9FAFB] text-[#111827] overflow-x-hidden">
+  <div class="grain"></div>
+  <div id="root"></div>
+  <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+</body>
+
+</html>
