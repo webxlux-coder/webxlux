@@ -132,3 +132,32 @@ export function useProjects() {
 
     return projects;
 }
+
+export function useSiteSettings() {
+    const { language } = useLanguage();
+    const [settings, setSettings] = useState<Record<string, string>>({});
+
+    useEffect(() => {
+        async function fetchSettings() {
+            const { data, error } = await supabase
+                .from('site_settings')
+                .select(`key, value_${language}`);
+
+            if (error) {
+                console.error('Error fetching site settings:', error);
+                return;
+            }
+
+            if (data) {
+                const settingsMap: Record<string, string> = {};
+                data.forEach((item: any) => {
+                    settingsMap[item.key] = item[`value_${language}`];
+                });
+                setSettings(settingsMap);
+            }
+        }
+        fetchSettings();
+    }, [language]);
+
+    return settings;
+}

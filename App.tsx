@@ -8,6 +8,7 @@ import ContactSection from './components/ContactSection';
 import Footer from './components/Footer';
 import ProjectDetail from './components/ProjectDetail';
 import PortfolioGallery from './components/PortfolioGallery';
+import SEO from './components/SEO';
 import { useLanguage } from './LanguageContext';
 
 // Declare globals for TypeScript
@@ -223,6 +224,7 @@ const App: React.FC = () => {
 
   return (
     <div className="relative antialiased">
+      <SEO />
       <ScrollProgress />
       <BackToTop />
 
