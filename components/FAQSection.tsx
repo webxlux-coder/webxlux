@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useLanguage } from '../LanguageContext';
-import { getFaqData } from '../constants';
+import { useFAQs } from '../hooks/useSupabaseData';
 
 const FAQItem: React.FC<{ question: string; answer: string; index: number }> = ({ question, answer, index }) => {
   const [isOpen, setIsOpen] = useState(false);
@@ -35,8 +35,8 @@ const FAQItem: React.FC<{ question: string; answer: string; index: number }> = (
 };
 
 const FAQSection: React.FC = () => {
-  const { t, language } = useLanguage();
-  const faqData = getFaqData(language);
+  const { t } = useLanguage();
+  const faqData = useFAQs();
 
   return (
     <section id="faq" className="py-24 px-6 md:px-24 bg-white">

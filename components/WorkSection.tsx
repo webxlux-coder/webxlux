@@ -1,14 +1,14 @@
 import React from 'react';
-import { getProjects } from '../constants';
 import { useLanguage } from '../LanguageContext';
+import { useProjects } from '../hooks/useSupabaseData';
 
 interface WorkSectionProps {
   onSelectProject: (id: number) => void;
 }
 
 const WorkSection: React.FC<WorkSectionProps> = ({ onSelectProject }) => {
-  const { language, t } = useLanguage();
-  const projects = getProjects(language);
+  const { t } = useLanguage();
+  const projects = useProjects();
 
   if (projects.length === 0) {
     return null;

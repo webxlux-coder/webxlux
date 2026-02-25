@@ -113,6 +113,15 @@ const Navbar: React.FC<NavbarProps> = ({
             {t.nav.services}
           </button>
           <button
+            onClick={() => {
+              onNavigateWork();
+              closeMenu();
+            }}
+            className="text-4xl md:text-6xl font-bold text-gray-900 hover:text-blue-600 transition-colors duration-300 font-poppins"
+          >
+            {t.nav.portfolio}
+          </button>
+          <button
             onClick={() => handleSectionClick('process')}
             className="text-4xl md:text-6xl font-bold text-gray-900 hover:text-blue-600 transition-colors duration-300 font-poppins"
           >
