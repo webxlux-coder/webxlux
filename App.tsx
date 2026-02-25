@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
-import WorkSection from './components/WorkSection';
 import ServicesSection from './components/ServicesSection';
 import ProcessSection from './components/ProcessSection';
 import FAQSection from './components/FAQSection';
@@ -229,7 +228,7 @@ const App: React.FC = () => {
 
       <Navbar
         onNavigateHome={handleBackToHome}
-        onNavigateWork={handleOpenPortfolio}
+        onNavigateWork={() => { }}
         onNavigateContact={handleNavigateContact}
         onNavigateFAQ={handleNavigateFAQ}
       />
@@ -237,7 +236,6 @@ const App: React.FC = () => {
       {view === 'home' && (
         <main className="relative">
           <Hero
-            onViewWork={handleOpenPortfolio}
             onContactClick={handleNavigateContact}
           />
           <InfiniteMarquee />
@@ -247,7 +245,6 @@ const App: React.FC = () => {
           <div className="relative">
             <WormScrollEffect />
             <ServicesSection />
-            <WorkSection onSelectProject={handleSelectProject} />
             <ProcessSection />
           </div>
 
